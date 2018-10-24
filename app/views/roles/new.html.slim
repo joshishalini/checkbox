@@ -1,0 +1,11 @@
+.container
+	.panel.panel-primary
+		.panel-heading New Role 
+		.panel-body 
+			=form_for @role,html: {  class: "form form-horizontal form-bordered"} do |f|   
+				.form-group
+					= f.label :role_name 
+					= f.text_field :role_name, class: "form-control", placeholder:"Role", required:""		
+				= f.submit 'submit',class: "btn btn-primary"
+
+

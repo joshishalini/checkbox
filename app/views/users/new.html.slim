@@ -1,0 +1,22 @@
+.container
+	.panel.panel-primary
+		.panel-heading New User 
+		.panel-body 
+			=form_for @user,html: {  class: "form form-horizontal form-bordered"} do |f|   
+				.form-group
+					= f.label :username 
+					= f.text_field :name, class: "form-control", placeholder:"Username", required:""
+				- if @roles.present? 
+					-checked = @user.role_users.collect(&:role_id)
+					-@roles.each.with_index do |role, index|  
+						-ru = @user.role_users.where(role_id: role.id).last
+						.form-group
+							= hidden_field_tag "user[role_users_attributes][#{index}][id]",ru.try(:id)
+							= hidden_field_tag "user[role_users_attributes][#{index}][user_id]",@user.id
+							= hidden_field_tag "user[role_users_attributes][#{index}][role_id]",role.id
+							= hidden_field_tag "user[role_users_attributes][#{index}][_destroy]",true
+							= check_box_tag "user[role_users_attributes][#{index}][_destroy]", false, !ru.try(:id).blank?
+							= role.role_name			
+				= f.submit 'submit',class: "btn btn-primary"
+
+

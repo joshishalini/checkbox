@@ -1,0 +1,39 @@
+doctype html
+/![if IE 8] <html lang="en" class="ie8"
+/![if IE 9] <html lang="en" class="ie9"
+/! [if !IE]><!
+html lang="en" 
+  /! <![endif]
+
+
+head
+  /! START @META SECTION
+  meta charset="utf-8" /
+  meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" /
+ 
+  meta content="admin, admin template, bootstrap3, clean, fontawesome4, good documentation, lightweight admin, responsive dashboard, webapp" name="keywords" /
+  meta content=("Djava UI") name="author" /
+  title User Role Management
+  /! / END META SECTION
+  /! START @FONT STYLES
+  link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" /
+  link href="http://fonts.googleapis.com/css?family=Oswald:700,400" rel="stylesheet" /
+  /! / END FONT STYLES
+  /! START @GLOBAL MANDATORY STYLES
+  = stylesheet_link_tag "home", :media => "all", 'data-turbolinks-track': 'reload'
+  = javascript_include_tag "home", 'data-turbolinks-track': 'reload'
+body.page-header-fixed.page-sidebar-fixed.page-footer-fixed
+  /![if lt IE 9]
+    | <p class="upgrade-browser">Upps!! You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> to improve your experience.</p
+  /! START @WRAPPER
+  section#wrapper
+    /! START @HEADER
+    =render partial: "shared/header"
+    =render partial: "shared/sidebar"
+
+    section#page-content
+      /! Start page header
+      =yield
+    =render partial: "shared/footer"
+  / #back-top.animated.pulse.circle
+  /   i.fa.fa-angle-up
